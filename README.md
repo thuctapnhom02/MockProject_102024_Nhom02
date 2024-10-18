@@ -9,5 +9,6 @@ page resident : http://localhost:3000/resident
 page staff : http://localhost:3000/staff
 ![image](https://github.com/user-attachments/assets/e038d028-c6ea-45f7-a43e-b8a24e91ad6f)
 
-3 page này mn tự css lại layout cho nó trong folder layout 
-nếu muốn thêm 1 page mới thì nhớ thêm vào folder routes (như các page đã có)
+3 page này mn tự css lại layout cho nó trong folder layout .
+
+Nếu muốn thêm 1 page mới thì nhớ thêm vào folder routes (như các page đã có)
