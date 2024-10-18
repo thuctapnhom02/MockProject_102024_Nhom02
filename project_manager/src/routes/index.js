@@ -167,15 +167,15 @@ export const routes = [
         path:"/staff/assignment",
         element: <Assignment />,
         children:[
-          {
-            path:"/staff/assignment/system",
-            element: <System />
-          },
-          {
-            path:"/staff/assignment/request_repair",
-            element: <RequestRepair />
-          },
         ]
+      },
+      {
+        path:"/staff/assignment/system",
+        element: <System />
+      },
+      {
+        path:"/staff/assignment/request_repair",
+        element: <RequestRepair />
       },
       {
         path:"/staff/workcontract",
