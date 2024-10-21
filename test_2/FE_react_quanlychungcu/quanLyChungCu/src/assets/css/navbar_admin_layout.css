@@ -1,0 +1,217 @@
+.root .main {
+  position: relative;
+  max-width: 1440px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+}
+.root .main a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.815);
+  font-size: 17px;
+}
+.root .main p {
+  color: rgba(0, 0, 0, 0.815);
+  font-size: 20px;
+}
+@media screen and (max-width: 1040px) {
+  .root .main a {
+    font-size: 15px;
+  }
+  .root .main p {
+    font-size: 17px;
+  }
+}
+.root .main__responebtn {
+  display: none;
+}
+.root .main__navbar {
+  position: relative;
+  width: 30%;
+  border-right: 2px solid #747373;
+  border-left: 2px solid #747373;
+  background-color: rgba(174, 174, 174, 1);
+  transition: all 0.1s linear;
+  z-index: 100000;
+}
+.root .main__navbar--itemlogo {
+  position: relative;
+  padding: 50px 20px;
+  display: flex;
+}
+.root .main__navbar--itemlogo a {
+  font-size: 20px;
+}
+@media screen and (max-width: 1040px) {
+  .root .main__navbar--itemlogo a {
+    font-size: 17px;
+  }
+}
+.root .main__navbar--itemlogo .logo__img img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 100%;
+}
+.root .main__navbar--itemlogo .logo__homelink {
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}
+.root .main__navbar--itemtog {
+  position: relative;
+  display: flex;
+  text-align: center;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 0px 25px;
+  background-color: white;
+  border-bottom: 1px solid black;
+  cursor: pointer;
+}
+.root .main__navbar--itemtog .itemtog__linkpage {
+  position: relative;
+  height: 0px;
+  transition: all 0.1s linear;
+}
+.root .main__navbar--itemtog .itemtog__linkpage--item {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+.root .main__navbar--itemtog .itemtog__linkpage--item .item {
+  padding: 0px 0px 0px 20px;
+}
+.root .main__navbar--itemtog .itemtog__linkpage--item .item a {
+  display: block;
+  text-align: start;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.root .main__navbar--itemtog .itemtog__linkpage--item .item a span {
+  position: absolute;
+  width: 0px;
+  height: 2px;
+  background-color: green;
+  z-index: 10px;
+  bottom: 0px;
+  left: 0px;
+  transition: all 0.1s linear;
+}
+.root .main__navbar--itemtog .itemtog__linkpage--item .item a:hover {
+  color: #000000;
+}
+.root .main__navbar--itemtog .itemtog__linkpage--item .item a:hover span {
+  width: 60%;
+}
+.root .main__navbar--itemtog .itemtog__btn {
+  height: 100%;
+}
+.root .main__navbar--itemtog .itemtog__btn p {
+  text-align: start;
+  padding: 25px 0px;
+}
+.root .main__navbar--item {
+  background-color: white;
+  border-bottom: 1px solid black;
+}
+.root .main__navbar--item .item__linkpage {
+  width: 100%;
+  height: 100%;
+}
+.root .main__navbar--item .item__linkpage a {
+  font-size: 20px;
+  display: block;
+  padding: 25px 0px;
+  padding-left: 25px;
+  width: 100%;
+  height: 100%;
+}
+@media screen and (max-width: 1040px) {
+  .root .main__navbar--item .item__linkpage a {
+    font-size: 17px;
+  }
+}
+.root .main__navbar--itemlogout {
+  margin-top: 30px;
+  width: 80%;
+  padding: 30px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: end;
+}
+.root .main__navbar--itemlogout .itemlogout__btn a {
+  display: block;
+  background-color: #747373;
+  padding: 10px 10px;
+  color: white;
+}
+.root .main__body {
+  position: relative;
+  width: 70%;
+  height: 20px;
+}
+@media screen and (max-width: 700px) {
+  .root .main {
+    display: block;
+  }
+  .root .main__responebtn {
+    display: block;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: rgba(174, 174, 174, 1);
+    top: 10px;
+    left: 0px;
+    border: 1px solid black;
+    border-left: none;
+    cursor: pointer;
+  }
+  .root .main__responebtn span {
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    background-color: black;
+  }
+  .root .main__responebtn span:nth-child(1) {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .root .main__responebtn span:nth-child(2) {
+    width: 10px;
+    right: 0px;
+    top: 9px;
+    transform: rotate(45deg);
+  }
+  .root .main__responebtn span:nth-child(3) {
+    right: 0px;
+    width: 10px;
+    top: 17px;
+    transform: rotate(-45deg);
+  }
+  .root .main__navbar {
+    position: absolute;
+    overflow: hidden;
+    height: auto;
+    border: none;
+    width: 0px;
+    top: 50px;
+    left: 0px;
+  }
+  .root .main__body {
+    width: 100%;
+    position: relative;
+    top: 50px;
+  }
+}
+
+/*# sourceMappingURL=navbar_admin_layout.css.map */
