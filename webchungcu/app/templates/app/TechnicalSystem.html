@@ -1,0 +1,63 @@
+{% extends "app/Base.html" %}
+{% load static %}
+{% block main__body %}
+<div class="main-header">
+    <p> Apartment Management In The United States </p>
+</div>
+<div class="head-infor">
+    Technical System Management
+</div>
+<div class="search__func">
+    <div class="labels">
+            <label>Select system</label>
+            <select class="form-select" id="system">
+                <option value="elevator">Electric System</option>
+                <option value="electric">Electrical distribution cabinet system</option>
+                <option value="fire_protection">Fire protection system</option>
+                <option value="HVAC">HVAC system</option>
+                <option value="camera">Camera System</option>
+                <option value="water">Water supply and drainage system</option>
+            </select>
+            
+    </div>
+    <div class="labels">
+        <label>Select status</label>
+        <select class="form-select" id="status">
+            <option value="normal">Normal</option>
+            <option value="maintenance">Under Maintenance</option>
+            <option value="repair">Under Repair</option>
+        </select>
+    </div>
+</div>
+<div class="search__but">
+    <div> </div>
+    <input type="text" placeholder="Search">
+    
+</div>
+<div class="table-list">
+    <div class="table-head">
+        <input type="checkbox">
+        <p class="text-data">System ID</th>
+        <p class="text-data">Location</th>
+        <p class="text-data">Status</th>
+        <p class="text-data">Nearest Maintenance</p>
+        <p class="text-data">Next Maintenance</p>
+        <p class="text-data" > Details </p>
+    </div>
+    <div class="table-data">
+        <input type="checkbox">
+        {% for system in systems %}
+        <tr>
+            <td>{{ system.system_id }}</td>
+            <td>{{ system.location }}</td>
+        </tr>
+        {% endfor %}
+    </div>
+    
+    <div class="add_but">
+        <input class="" type="submit" value="Add">
+    </div>
+</div>
+
+
+{% endblock main__body%}

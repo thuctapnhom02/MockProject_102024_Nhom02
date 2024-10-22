@@ -1,0 +1,116 @@
+{% extends "app/Base.html" %}
+{% load static %}
+{% block main__body %}
+<div class="main-header">
+    <p> Apartment Management In The United States </p>
+</div>
+<div class="head-infor">
+    <a href="#" class="previous round">&#8249;</a>
+    ADD SYSTEM NEED MAINTENANCE
+</div>
+<div class="main-element">
+    <div class="element">
+        <label>Choose the equipment/system</label>
+        <select class="form-select" id="system">
+            <option value="elevator">Elevator System</option>
+            <option value="electric">Electric System</option>
+            <option value="electric_cabin">Electrical distribution cabinet system</option>
+            <option value="fire_protection">Fire protection system</option>
+            <option value="HVAC">HVAC system</option>
+            <option value="camera">Camera Security System</option>
+            <option value="water">Water supply and drainage system</option>
+        </select>
+        
+    </div>
+    <div class="element">
+        <label>Sysem ID</label>
+        <select class="form-select" id="name_">
+            <option value="elevator">El001</option>
+            <option value="elevator">Electric System</option>
+            <option value="electric">Electrical distribution cabinet system</option>
+            <option value="fire_protection">Fire protection system</option>
+            <option value="HVAC">HVAC system</option>
+            <option value="camera">Camera System</option>
+            <option value="water">Water supply and drainage system</option>
+        </select>
+        
+    </div>
+    <div class="element">
+        <label>Location</label>
+        <select class="form-select" id="location_">
+            <option value="ground">Ground</option>
+            <option value="fl1">Floor 1</option>
+            <option value="fl2">Floor 2</option>
+            <option value="fl3">Floor 3</option>
+            <option value="fl4">Floor 4</option>
+            <option value="fl5">Floor 5</option>
+            <option value="fl6">Floor 6</option>
+            <option value="fl7">Floor 7</option>
+            <option value="fl8">Floor 8</option>
+            <option value="fl9">Floor 9</option>
+            <option value="SO">Security Office</option>
+        </select>
+    </div>
+    <div class="element">
+        <label>Status</label>
+        <select class="form-select" id="status_">
+            <option value="elevator">Normal</option>
+            <option value="elevator">Maintenance</option>
+        </select>
+    </div>
+    <div class="element">
+        <label>Maintenance Task</label>
+        <select class="form-select" id="maintenance_task_">
+            <option value="elevator">Check periodically</option>
+            <option value="elevator">Repairing</option>
+        </select>
+        
+    </div>
+    <div class="element">
+        <label>Description</label> <!--id='description_'-->
+        <label>
+            <input type="text">
+        </label>
+    </div>
+
+</div>
+<div class="main-element">
+    <div class="element-head">
+        Assign maintenance staff
+    </div>
+    <div class="element">
+        <label>Expertise</label>
+        <select class="form-select" id="role_">
+            <option value="">Staff Repair</option>
+        </select>
+    </div>
+    <div class="element">
+        <label>ID Staff</label>
+        <select class="form-select" id="id_staff_">
+            <option value="ST0000001">ST0000001</option>
+        </select>
+    </div>
+
+</div>
+<div class="add_but">
+        <input class="font-size-20" type="submit" value="Assign tasks">
+</div>
+<div class="main-element">
+    <div class="element-head">
+        Maintenance schedule
+    </div>
+    <div class="table-head">
+        <input type="checkbox">
+        <p class="text-data">System ID</th>
+        <p class="text-data">Date</th>
+        <p class="text-data">Maintenance Type</th>
+        <p class="text-data">Equipment</p>
+        <p class="text-data">Result</p>
+        <p class="text-data" > Details </p>
+    </div>
+    <div class="table-data">
+        <input type="checkbox">
+    </div>
+</div>
+
+{% endblock main__body%}
