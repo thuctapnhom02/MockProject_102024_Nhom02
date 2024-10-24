@@ -1,0 +1,10 @@
+@url_dev=http://localhost:3056/v1/api
+//signUp
+POST {{url_dev}}/shop/signup
+Content-Type: application/json
+x-api-key: 9fa8bd307be898817f93c31f14d1740b7e5af94055a3549e3f3c218e687ed7e6771df98cc641c4414ba7ec1677b45d232838ed02b8eb610c6a23c8f48d7e0f13
+{
+    "name": "Shop Yassa",
+    "email": "shop1@yassa.com",
+    "password": "abc123"
+}
