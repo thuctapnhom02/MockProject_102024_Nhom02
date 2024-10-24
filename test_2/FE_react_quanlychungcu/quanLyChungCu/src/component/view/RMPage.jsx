@@ -90,7 +90,7 @@ export default function RMPage(){
             setApartment_(data.data.api_result_.apartmentEntiries_)
             // console.log([data.data.api_result_.totalProceeds_,data.data.api_result_.totalReceivables_])
             // console.log(data.data.api_result_)
-            console.log("reload")
+            console.log(data.data.api_result_)
         })
     }
 
@@ -269,6 +269,8 @@ export default function RMPage(){
             data:JSON.stringify(userCreate_)
         }).then((data)=>{
             console.log(data.data.api_result_)
+            funcsearch()
+            togleWindowCreateUser(null)
         })
     }
    
@@ -336,7 +338,6 @@ export default function RMPage(){
             $(".main__body--itemwindowcreateuser").css("display","none")
             setCheckWindowCreate_(true)
         }
-        setCheckWindowEdit_()
     }
 
 
