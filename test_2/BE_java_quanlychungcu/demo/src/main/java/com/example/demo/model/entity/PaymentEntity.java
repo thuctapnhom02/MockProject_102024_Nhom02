@@ -25,5 +25,8 @@ public class PaymentEntity {
     String status_;
     Double total_;
     Date payment_dateline_;
-    String id_type_payment_;
+    String id_payment_method_;
+    Integer delete_status_;
+    Date day_delete_;
+
 }

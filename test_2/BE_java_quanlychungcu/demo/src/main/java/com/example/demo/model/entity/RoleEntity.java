@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,4 +19,6 @@ public class RoleEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     String id_;
     String name_role_;
+    Date day_delete_;
+    Integer delete_status_;
 }

@@ -2,7 +2,11 @@ package com.example.demo.controller;
 
 
 import com.example.demo.api_setting.ApiRespone;
-import com.example.demo.model.request.SMPRequest;
+import com.example.demo.model.entity.UserEntity;
+import com.example.demo.model.request.PaymentUpdateRequest;
+import com.example.demo.model.request.SMPSearchRequest;
+import com.example.demo.model.respone.UpdateDeleteCreateRespone;
+import com.example.demo.model.request.UserUpdateRequest;
 import com.example.demo.model.respone.RMPRespone;
 import com.example.demo.model.serviece.RMPServiece;
 import lombok.AccessLevel;
@@ -23,21 +27,88 @@ public class AdminController {
     RMPServiece rmpServiece;
 
     @PreAuthorize("hasRole('Admin')")
-    @PostMapping("/ResidentManagementAndPaymentsServiece")
-    ApiRespone<RMPRespone> ResidentManagementAndPaymentsServiece(@RequestBody SMPRequest SMPRequest){
-        ApiRespone<RMPRespone> apiRespone = rmpServiece.searchResidentManagementAndPayments(SMPRequest.getName_(),
-                SMPRequest.getPhone_(),
-                SMPRequest.getEmail_());
+    @PostMapping("/ResidentManagementAndPayments")
+    ApiRespone<RMPRespone> ResidentManagementAndPaymentsServiece(@RequestBody SMPSearchRequest SMPSearchRequest){
+        ApiRespone<RMPRespone> apiRespone = rmpServiece.searchResidentManagementAndPayments(SMPSearchRequest.getName_(),
+                SMPSearchRequest.getPhone_(),
+                SMPSearchRequest.getEmail_(),
+                SMPSearchRequest.getIdApartment_());
+
+        return apiRespone;
+    }
+
+
+    @PreAuthorize("hasRole('Admin')")
+    @RequestMapping("/ResidentManagementAndPayments")
+    ApiRespone<RMPRespone> ResidentManagementAndPaymentsGet(){
+        ApiRespone<RMPRespone> apiRespone = rmpServiece.searchResidentManagementAndPayments(null, null, null,null);
+
+        return apiRespone;
+    }
+
+
+    @PreAuthorize("hasRole('Admin')")
+    @PostMapping("/ResidentManagementAndPaymentsUpdateUser")
+    ApiRespone<UpdateDeleteCreateRespone> ResidentManagementAndPaymentsUpdateUser(@RequestBody  UserUpdateRequest userUpdateRequest){
+        System.out.println(userUpdateRequest);
+        ApiRespone<UpdateDeleteCreateRespone> apiRespone = rmpServiece.updateRMPUser(userUpdateRequest);
+
+        return apiRespone;
+    }
+
+
+    @PreAuthorize("hasRole('Admin')")
+    @PostMapping("/ResidentManagementAndPaymentsUpdatePayment")
+    ApiRespone<UpdateDeleteCreateRespone> ResidentManagementAndPaymentsUpdatePayment(@RequestBody PaymentUpdateRequest paymentUpdateRequest){
+        ApiRespone<UpdateDeleteCreateRespone> apiRespone = rmpServiece.upDateRMPPayment(paymentUpdateRequest);
+
+        return apiRespone;
+    }
+
+
+    @PreAuthorize("hasRole('Admin')")
+    @PostMapping("/ResidentManagementAndPaymentsDeleteUser")
+    ApiRespone<UpdateDeleteCreateRespone> ResidentManagementAndPaymentsDeleteUser(@RequestBody String userId_){
+        ApiRespone<UpdateDeleteCreateRespone> apiRespone = rmpServiece.deleteUser(userId_);
+
+        return apiRespone;
+    }
+
+
+    @PreAuthorize("hasRole('Admin')")
+    @PostMapping("/ResidentManagementAndPaymentsDeletePayment")
+    ApiRespone<UpdateDeleteCreateRespone> ResidentManagementAndPaymentsDeletePayment(@RequestBody String paymentId_){
+        ApiRespone<UpdateDeleteCreateRespone> apiRespone = rmpServiece.deletePayment(paymentId_);
 
         return apiRespone;
     }
 
     @PreAuthorize("hasRole('Admin')")
-    @RequestMapping("/ResidentManagementAndPaymentsServiece")
-    ApiRespone<RMPRespone> ResidentManagementAndPaymentsGet(){
-        ApiRespone<RMPRespone> apiRespone = rmpServiece.searchResidentManagementAndPayments(null, null, null);
+    @PostMapping("/ResidentManagementAndPaymentsCreateUser")
+    ApiRespone<UpdateDeleteCreateRespone> ResidentManagementAndPaymentsCreateUser(@RequestBody UserEntity userEntityRequest_){
+
+        ApiRespone<UpdateDeleteCreateRespone> apiRespone = rmpServiece.createUser(userEntityRequest_);
 
         return apiRespone;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

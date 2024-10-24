@@ -1,10 +1,8 @@
 package com.example.demo.model.respone;
 
 
-import com.example.demo.model.entity.PaymentEntity;
-import com.example.demo.model.entity.ServiceEntity;
-import com.example.demo.model.entity.TypePaymentEntity;
-import com.example.demo.model.entity.UserEntity;
+import com.example.demo.model.entity.*;
+import com.example.demo.model.entity.custom.PaymentCustomNameUserEntity;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -17,9 +15,11 @@ import java.util.List;
 @Builder
 public class RMPRespone {
     List<UserEntity> user_;
-    List<PaymentEntity> payment_;
+    List<PaymentCustomNameUserEntity> payment_;
     List<ServiceEntity> service_;
-    List<TypePaymentEntity> typePayment_;
-    double totalReceivables;
-    double totalProceeds;
+//    List<String> nameUserToPayment_;
+    List<PaymentMethodEntity> paymentMethod_;
+    List<ApartmentEntity> apartmentEntiries_;
+    double totalReceivables_;
+    double totalProceeds_;
 }

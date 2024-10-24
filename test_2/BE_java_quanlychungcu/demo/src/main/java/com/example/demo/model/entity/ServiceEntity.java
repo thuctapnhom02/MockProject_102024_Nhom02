@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,7 +20,9 @@ public class ServiceEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     String id_;
     String name_;
-    double price_;
+    Double price_;
     String regulation_;
     String deription_;
+    Date day_delete_;
+    Integer delete_status_;
 }

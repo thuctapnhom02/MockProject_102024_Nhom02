@@ -4,9 +4,10 @@ package com.example.demo.exception;
 
 
 public enum Err_Code {
-    ERR_CODE_password_not_create_token_("Err request","not create token"),
-    ERR_CODE_password_login_("Err request","password false"),
-    ERR_CODE_phone_login_("Err request","password false");
+    ERR_CODE_password_not_create_token_("Err request","not create token !!!!!!!!!!"),
+    ERR_CODE_password_login_("Err request","password false !!!!!!!!"),
+    ERR_CODE_phone_login_("Err request","password false !!!!!!!"),
+    ERR_CODE_Update_data_("Err request","not updaet the value !!!!!");
 
 
     private String err_code_;

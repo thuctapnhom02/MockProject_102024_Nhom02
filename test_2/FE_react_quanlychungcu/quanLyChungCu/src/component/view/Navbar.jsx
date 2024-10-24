@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 
-export default function Navbar(props){
+export default function Navbar(){
 
     
 
@@ -121,7 +121,7 @@ export default function Navbar(props){
               <div className="itemtog__linkpage">
                   <div className="itemtog__linkpage--item">
                       <div className="item">
-                          <a href={"/RMP/"+props.item_}>management
+                          <a href="/RMP">management
                               <span></span>
                           </a>
                       </div>

@@ -9,24 +9,29 @@ import Cookies from "universal-cookie"
 
 const LoginFake = ()=>{
     const [token_,setToken_] = useState()
-    const useParams_ = useParams()
-    const navigate = useNavigate()
+    const [phone_,setPhone_] = useState()
+    const [password_,setPassword_] = useState()
     const cookies_ = new Cookies 
+    const navigate = useNavigate()
     
-    function loginFunc(){
+    const loginFunc = ()=>{
         // let phone_value_ = $(".form__login--phone").val()
         // let password_value_ = $(".form__login--password").val()
         let phone_value_ = "0981000001"
         let password_value_ = "admin123"
-
-
-        /*fake login and to page ResidentManagementAndPaymentsServiece
-            Post api to http://127.0.0.1:9090/Login
-                give token
-        */
+        console.log(phone_value_,password_value_)
+       
 
 
         axios("http://127.0.0.1:9090/Login",{
+
+
+            /*fake login and to page ResidentManagementAndPaymentsServiece
+            Post api to http://127.0.0.1:9090/Login
+                give token
+            */
+
+
             method:"POST",
             headers:{
                 'Authorization':"",
@@ -52,18 +57,19 @@ const LoginFake = ()=>{
             }
         })
     }
-
+    const setValuePhone = (e)=>{setPhone_(e.target.value)}
+    const setValuePassword = (e)=>{setPassword_(e.target.value)}
 
     return(
         <div className="main">
             <Navbar item_ = {token_}></Navbar>
             <div className="main__body">
-                <div className="form__login">
-                    <input className="form__login--phone" type="text" placeholder="phone"/>
-                    <input className="form__login--password" type="text" placeholder="password"/>
-                    <p className="form__login--notication"></p>
-                    <button onClick={loginFunc}>Login</button>
-                </div>
+                    <div className="form__login">
+                            <input className="form__login--phone" type="text" placeholder="phone" onChange={setValuePhone}/>
+                            <input className="form__login--password" type="text" placeholder="password" onChange={setValuePassword}/>
+                            <p className="form__login--notication"></p>
+                            <button onClick={loginFunc}>Login</button>
+                    </div>
             </div>
         </div>
     )

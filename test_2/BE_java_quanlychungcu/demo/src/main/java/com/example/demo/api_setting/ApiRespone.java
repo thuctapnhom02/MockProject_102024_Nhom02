@@ -17,6 +17,6 @@ import lombok.experimental.FieldDefaults;
 public class ApiRespone<T> {
     String api_respone_ ;
     String api_desription_;
-    String api_link_request_;
+//    String api_link_request_;
     T api_result_;
 }

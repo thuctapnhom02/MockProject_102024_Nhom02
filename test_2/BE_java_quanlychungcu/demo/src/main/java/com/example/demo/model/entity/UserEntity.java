@@ -30,4 +30,6 @@ public class UserEntity {
     Date start_day_;
     Date end_day_;
     String address_;
+    Date day_delete_;
+    Integer delete_status_;
 }

@@ -28,4 +28,6 @@ public class StaffEntity {
     String Status_;
     String password_;
     String address_;
+    Date day_delete_;
+    Integer delete_status_;
 }

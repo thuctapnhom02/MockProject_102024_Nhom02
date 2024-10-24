@@ -11,8 +11,9 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class SMPRequest {
+public class SMPSearchRequest {
     String name_;
     String phone_;
     String email_;
+    String idApartment_;
 }
