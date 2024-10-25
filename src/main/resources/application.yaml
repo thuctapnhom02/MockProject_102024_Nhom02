@@ -1,0 +1,19 @@
+spring:
+  application:
+    name:
+      MockProject_102024_Nhom2
+  datasource:
+    url: jdbc:sqlserver://DESKTOP-8PESD46\\SQLEXPRESS:1433;encrypt=true;trustServerCertificate=true;databaseName=webchungcu_91
+    username: sa
+    password: 123456
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  jpa:
+    show-sql:
+      true
+    hibernate:
+      dialect: org.hibernate.dialect.SQLServerDialect
+      ddl-auto: update
+
+
+api:
+  prefix: api/v1
