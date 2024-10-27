@@ -1,0 +1,198 @@
+body {
+  background-color: white;
+  font-family: "Open Sans";
+}
+
+.login__page {
+  max-width: 1040px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+.login__page--item {
+  display: flex;
+  display: flex;
+  flex-wrap: nowrap;
+  position: absolute;
+}
+.login__page--item .item__left {
+  background-color: white;
+  padding-left: 10%;
+  padding-top: 100px;
+  border: 2px solid rgba(0, 0, 0, 0.318);
+  box-shadow: -2px 2px rgba(0, 0, 0, 0.374);
+}
+.login__page--item .item__left--tile_1 p {
+  font-size: 36px;
+  color: rgb(55, 81, 254);
+  padding-top: 10px;
+  font-weight: bold;
+}
+.login__page--item .item__left--tile_2 p {
+  padding: 10px 0;
+  color: rgba(0, 0, 0, 0.568);
+  font-size: 18;
+}
+.login__page--item .item__left--loginform {
+  padding-left: 10px;
+}
+.login__page--item .item__left--loginform__tile {
+  padding: 10px 0;
+}
+.login__page--item .item__left--loginform__tile p {
+  color: rgb(87, 3, 113);
+  font-size: 20px;
+  font-weight: bold;
+}
+.login__page--item .item__left--loginform__email {
+  padding: 20px 0;
+  position: relative;
+}
+.login__page--item .item__left--loginform__email input {
+  width: 80%;
+  height: 40px;
+  transition: all 0.4s linear;
+  border: 1px solid rgba(0, 0, 0, 0.219);
+  padding: 0 20px;
+  transition: all 0.2s linear;
+}
+.login__page--item .item__left--loginform__email input:focus {
+  outline: none;
+  border-left: 2px solid rgb(55, 81, 254);
+}
+.login__page--item .item__left--loginform__email label {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.2s linear;
+}
+.login__page--item .item__left--loginform__email input:focus ~ label {
+  position: absolute;
+  top: 10px;
+}
+.login__page--item .item__left--loginform__pw {
+  position: relative;
+}
+.login__page--item .item__left--loginform__pw input {
+  outline: none;
+  transition: all 0.2s linear;
+  border: 1px solid rgba(0, 0, 0, 0.219);
+  height: 40px;
+  position: relative;
+  width: 80%;
+  padding: 0 20px;
+}
+.login__page--item .item__left--loginform__pw label {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.2s linear;
+}
+.login__page--item .item__left--loginform__pw input:focus ~ label {
+  position: absolute;
+  top: -10px;
+}
+.login__page--item .item__left--loginform__settingpw {
+  display: flex;
+  padding: 10px 0;
+}
+.login__page--item .item__left--loginform__settingpw .remember {
+  width: 50%;
+  display: flex;
+}
+.login__page--item .item__left--loginform__settingpw .remember p {
+  color: rgba(0, 0, 0, 0.568);
+  text-decoration: none;
+  font-size: 18;
+}
+.login__page--item .item__left--loginform__settingpw .forgot {
+  width: 50%;
+}
+.login__page--item .item__left--loginform__settingpw .forgot a {
+  color: rgba(0, 0, 0, 0.568);
+  text-decoration: none;
+  font-size: 18;
+}
+.login__page--item .item__left--loginform__btn {
+  padding: 10px 0;
+  margin-top: 40px;
+  display: flex;
+}
+.login__page--item .item__left--loginform__btn--link {
+  width: 20%;
+  height: 40px;
+  display: flex;
+  margin-right: 40px;
+  justify-content: center;
+  align-items: center;
+}
+.login__page--item .item__left--loginform__btn--link a {
+  font-size: 18px;
+  text-decoration: none;
+}
+.login__page--item .item__left--loginform__btn--link:nth-child(1) {
+  background-color: rgb(55, 81, 254);
+}
+.login__page--item .item__left--loginform__btn--link:nth-child(1) a {
+  color: white;
+}
+.login__page--item .item__left--loginform__btn--link:nth-child(2) {
+  background-color: white;
+  border: 1px solid rgb(55, 81, 254);
+}
+.login__page--item .item__left--loginform__btn--link:nth-child(2) a {
+  color: rgb(55, 81, 254);
+}
+.login__page--item .item__left--logins {
+  padding: 10px 0;
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 50px;
+}
+.login__page--item .item__left--logins .text {
+  width: 40%;
+}
+.login__page--item .item__left--logins .text p {
+  display: inline-block;
+  color: rgba(0, 0, 0, 0.568);
+}
+.login__page--item .item__left--logins .link {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.login__page--item .item__left--logins .link a {
+  text-decoration: none;
+  display: inline-block;
+  color: rgb(55, 81, 254);
+  padding: 10px 0;
+}
+.login__page--item .item__right {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(229, 229, 229);
+}
+@media screen and (max-width: 700px) {
+  .login__page--item .item__right {
+    width: 0px;
+  }
+}
+.login__page--item .item__right--img {
+  width: 100%;
+}
+.login__page--item .item__right--img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/*# sourceMappingURL=login.css.map */
