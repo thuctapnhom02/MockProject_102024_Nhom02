@@ -1,0 +1,9 @@
+.repair{
+    width: 50%;
+    display: flex;
+}
+.repair_search{
+    width: 70%;
+    padding:0px 10px;
+    margin:0px 38px;
+}
