@@ -1,0 +1,58 @@
+{% extends "app/Base.html" %}
+{% load static %}
+
+{% block main__body %}
+<div class="main-header">
+    <p> Apartment Management In The United States </p>
+</div>
+<div class="head-infor">
+    List Of Repair Requirement
+</div>
+<div class="search__func">
+    <div class="repair">
+        <input type="text" class="repair_search" placeholder="Search" oninput="filterBySearch_Repair">
+    </div>
+    <div class="repair">
+        <p>Select status</p>
+        <select class="form-select" id="status" onchange="filterByStatus_Repair()">
+            <option value="">All</option>
+        </select>
+    </div>
+</div>
+
+<div class="table-list" id="table-list">
+    <div class="table-head">
+        <input class="check-box" type="checkbox">
+        <p class="text-data">Request ID</p>
+        <p class="text-data">Account</p>
+        <p class="text-data">Request date</p>
+        <p class="text-data">Maintenance equipment</p>
+        <p class="text-data">Processing Status</p>
+        <p class="text-data">Details</p>
+    </div>
+    <div id ="repair-list">
+        
+    </div>
+</div>
+<div id="repairModel" class="modal">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <div class="head-infor">
+            REPAIR REQUEST DETAILS
+        </div>
+        <div>
+            <p class="infor-text">Request ID: <span id="request_id"></span></p>
+            <p class="infor-text">Resident ID: <span id="id_user_"></span></p>
+            <p class="infor-text">Request Day: <span id="expected_completion_date"></span></p>
+            <p class="infor-text">Expect Day: <span id="expected_completion_date_"></span></p>
+            <p class="infor-text">Maintenance equipment: <span id="id_equipment__"></span></p>
+            <p class="infor-text">Apartment: <span id="apartment_id_"></span></p>
+            <p class="infor-text">Repair content: <span id="repair_content"></span></p>
+            <p class="infor-text">Condition of Damage: <span id="condition_of_damage"></span></p>
+            <div class="list-head">
+                
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock main__body%}
