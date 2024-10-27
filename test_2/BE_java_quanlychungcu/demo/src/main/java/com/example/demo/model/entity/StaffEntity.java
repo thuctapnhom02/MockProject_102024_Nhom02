@@ -21,11 +21,11 @@ public class StaffEntity {
     String id_;
     String id_role_;
     String name_;
-    String Phone_;
+    String phone_;
     String gender_;
     Date start_day_;
     Date end_day_;
-    String Status_;
+    String status_;
     String password_;
     String address_;
     Date day_delete_;

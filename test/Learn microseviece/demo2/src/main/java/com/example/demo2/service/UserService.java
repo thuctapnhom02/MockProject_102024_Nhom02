@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
     public String  createUser(UserEntity fakeUserEntityRequest_){
-        System.out.println(fakeUserEntityRequest_);
+        System.out.println("create vcl");
         return "create phone and pass ok";
     }
 }

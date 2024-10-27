@@ -36,10 +36,10 @@ export default function RMPage(){
         */ 
 
 
-        let name_ = $(".itemsearch__input .itemsearch__input--item:nth-child(1) .item__input input").val()
-        let nameApartment_ = $(".itemsearch__input .itemsearch__input--item:nth-child(2) .item__input select").val()
-        let phone_ = $(".itemsearch__input .itemsearch__input--item:nth-child(3) .item__input input").val()
-        let email_ = $(".itemsearch__input .itemsearch__input--item:nth-child(4) .item__input input").val()
+        let name_ = $(".itemsearchRSM__input .itemsearchRSM__input--item:nth-child(1) .item__input input").val()
+        let nameApartment_ = $(".itemsearchRSM__input .itemsearchRSM__input--item:nth-child(2) .item__input select").val()
+        let phone_ = $(".itemsearchRSM__input .itemsearchRSM__input--item:nth-child(3) .item__input input").val()
+        let email_ = $(".itemsearchRSM__input .itemsearchRSM__input--item:nth-child(4) .item__input input").val()
 
         if(nameApartment_==0){nameApartment_= null}
         // console.log("test",nameApartment_,name_,phone_,email_)
@@ -59,7 +59,6 @@ export default function RMPage(){
             })
 
         }).then(data=>{
-            console.log(data.data.api_result_)
             setPayMent_(data.data.api_result_.payment_)
             setUser_(data.data.api_result_.user_)
             setPaymentTotalCount_([data.data.api_result_.totalProceeds_,data.data.api_result_.totalReceivables_])
@@ -90,7 +89,6 @@ export default function RMPage(){
             setApartment_(data.data.api_result_.apartmentEntiries_)
             // console.log([data.data.api_result_.totalProceeds_,data.data.api_result_.totalReceivables_])
             // console.log(data.data.api_result_)
-            console.log(data.data.api_result_)
         })
     }
 
@@ -117,13 +115,13 @@ export default function RMPage(){
 
         let paymentUpdate_={
             id_:paymentIdNow_,
-            idService_:$(".itemwindoweditpayment__item--input:nth-child(4) select").val(),
-            idPaymentMethod_:$(".itemwindoweditpayment__item--input:nth-child(5) select").val(),
-            paymentDateline_:$(".itemwindoweditpayment__item--input:nth-child(6) input").val(),
+            user_id_ : userIDNow_,
+            id_service_:$(".itemwindoweditpayment__item--input:nth-child(4) select").val(),
+            id_payment_method_:$(".itemwindoweditpayment__item--input:nth-child(5) select").val(),
+            payment_dateline_:$(".itemwindoweditpayment__item--input:nth-child(6) input").val(),
             status_:$(".itemwindoweditpayment__item--input:nth-child(7) input:text").val(),
             total_:parseFloat($(".itemwindoweditpayment__item--input:nth-child(8) input:text").val())
         }
-        console.log(paymentUpdate_)
 
         axios("http://127.0.0.1:9090/admin/api/ResidentManagementAndPaymentsUpdatePayment",{
             method:"POST",
@@ -180,11 +178,6 @@ export default function RMPage(){
     }
 
 
-    function updatePayment(){
-        console.log(checkWindowEdit_)
-    }
-
-
     function funcDeleteUser(){
         
         
@@ -206,7 +199,6 @@ export default function RMPage(){
                 // funcreloadDataUserAndPayment()
                 funcsearch()
                 togleWindowEditUser(null,null)
-                console.log(data.data.api_result_)
                 // console.log(userIDNow_)
             })
         }
@@ -256,10 +248,8 @@ export default function RMPage(){
             password_:$(".itemwindowcreateuser__item--input:nth-child(12) input").val(),
             ssn_:$(".itemwindowcreateuser__item--input:nth-child(13) input").val(),
             address_:$(".itemwindowcreateuser__item--input:nth-child(14) input").val(),
-            delete_status_ : '1'
         }
-        console.log(userCreate_)
-
+        
         axios("http://127.0.0.1:9090/admin/api/ResidentManagementAndPaymentsCreateUser",{
             method:"POST",
             headers:{
@@ -268,7 +258,6 @@ export default function RMPage(){
             },
             data:JSON.stringify(userCreate_)
         }).then((data)=>{
-            console.log(data.data.api_result_)
             funcsearch()
             togleWindowCreateUser(null)
         })
@@ -313,6 +302,7 @@ export default function RMPage(){
         if(checkWindowEdit_[1]){
             setCheckWindowEdit_([checkWindowEdit_[0],false])
             setPaymentIdNow_(paymentEventEdit_.id_)
+            setUserIdNow_(paymentEventEdit_.user_id_)
             $(".main__body--itemwindoweditpayment").css("height",jQuery(window).height())
             $(".main__body--itemwindoweditpayment").css("display","flex")
             $(".itemwindoweditpayment__item--input:nth-child(3) p:nth-child(2)").text(paymentEventEdit_.name_)
@@ -340,47 +330,36 @@ export default function RMPage(){
         }
     }
 
-
-    function exportExelFile(){
-        
-    }
-    
-
-
-
-{/* <div  class="main">
-    <div  class="main__body">
-
-    </div> 
-</div> */}
-
     return (<div className="main">
         <Navbar ></Navbar>
         <div className="main__body">
+            <div className="SC_033">
+
+            
             <div className="main__body--itemtitle_1">
             <p>Apartment management in the United States</p>
             </div>
             <div className="main__body--itemtitle_2">
                 <p>Resident management and payments</p>
             </div>
-            <div className="main__body--itemsearch">
-                <form action="">
-                    <div className="itemsearch__input">
-                        <div className="itemsearch__input--item">
+            <div className="main__body--itemsearchRSM">
+                <div className="form">
+                    <div className="itemsearchRSM__input">
+                        <div className="itemsearchRSM__input--item">
                             <div className="item__title">
                                 <p>Tenant</p>
                             </div>
                             <div className="item__input">
-                                <p></p><input  type="text"/>
+                                <p></p><input  type="text" onChange={funcsearch} />
                             </div>
                         </div>
-                        <div className="itemsearch__input--item">
+                        <div className="itemsearchRSM__input--item">
                             <div className="item__title">
                                 <p>Apartment</p>
                             </div>
                             <div className="item__input">
-                                <select>
-                                    <option value="0">none</option>
+                                <select onChange={funcsearch} >
+                                    <option value="0">all</option>
                                     {
                                         apartment_?.map((item,i)=>(
                                             <option key={i} value={item.id_}>{item.num_apartment_}</option>
@@ -389,29 +368,29 @@ export default function RMPage(){
                                 </select>
                             </div>
                         </div>
-                        <div className="itemsearch__input--item">
+                        <div className="itemsearchRSM__input--item">
                             <div className="item__title">
                                 <p>Phone</p>
                             </div>
                             <div className="item__input">
                                 <p></p><input
-                                 type="text" />
+                                 type="text" onChange={funcsearch}/>
                             </div>
                         </div>
-                        <div className="itemsearch__input--item">
+                        <div className="itemsearchRSM__input--item">
                             <div className="item__title">
                                 <p>Email</p>
                             </div>
                             <div className="item__input">
                                 <p></p><input
-                                 type="text"/>
+                                 type="text" onChange={funcsearch}/>
                             </div>
                         </div>
                     </div>
-                    <div className="itemsearch__btn">
+                    {/* <div className="itemsearchRSM__btn">
                        <a onClick={funcsearch}>Search</a> 
-                    </div>
-                </form>
+                    </div> */}
+                </div>
             </div>
             <div className="main__body--itemuser">
                 <div className="itemuser__tile">
@@ -430,7 +409,7 @@ export default function RMPage(){
                 <div className="itemuser__table">
                     <div className="itemuser__table--tile">
                         <div className="tile__name">
-                            <p onClick={updatePayment}>name user</p>
+                            <p>name user</p>
                         </div>
                         <div className="tile__name">
                             <p>Address</p>
@@ -760,6 +739,7 @@ export default function RMPage(){
                         </div>
 
                     </div>
+            </div>
             </div>
         </div>
     </div> 

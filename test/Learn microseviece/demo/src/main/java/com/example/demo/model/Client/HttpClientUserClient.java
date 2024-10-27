@@ -9,12 +9,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
-@Service
 @FeignClient(name = "userClient",url = "http://127.0.0.1:9091/user")
 public interface HttpClientUserClient {
 
     @PostMapping(value = "/user",produces = MediaType.APPLICATION_JSON_VALUE)
-     Object createUser(@RequestBody ClientUserEntity clientUserEntity);
+     public  String createUser(@RequestBody ClientUserEntity clientUserEntity);
 
 
 }

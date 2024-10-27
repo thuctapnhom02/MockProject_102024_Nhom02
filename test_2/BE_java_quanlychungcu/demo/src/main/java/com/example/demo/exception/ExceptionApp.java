@@ -1,5 +1,6 @@
 package com.example.demo.exception;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -14,18 +15,13 @@ import lombok.experimental.FieldDefaults;
 public class ExceptionApp {
 
     @ExceptionHandler(value = ExceptionCustom.class)
-    ApiRespone<ExceptionErrRespont> err_respone(ExceptionCustom exeptioncustom){
-        
-        ApiRespone<ExceptionErrRespont> api = new ApiRespone<>();
+    ResponseEntity<ApiRespone<String>> err_respone(ExceptionCustom exeptioncustom){
 
-        api.setApi_desription_(exeptioncustom.getDesription_());
-        api.setApi_respone_(exeptioncustom.getErr_code_().getErr_code());
-        api.setApi_result_(ExceptionErrRespont.builder()
-                        .err_code_(exeptioncustom.getErr_code_().getErr_code())
-                        .mess_(exeptioncustom.getErr_code_().getMess())
-                        .build());
-        
-        return api;
+        return ResponseEntity.badRequest().body(ApiRespone.<String>builder()
+                        .api_respone_(exeptioncustom.getErrCode_())
+                        .api_desription_(exeptioncustom.getDesription_())
+                        .api_result_("request error!!!!!!!!")
+                .build());
     }
     
 

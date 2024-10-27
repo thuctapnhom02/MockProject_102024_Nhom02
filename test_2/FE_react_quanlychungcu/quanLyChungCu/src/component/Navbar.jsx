@@ -72,12 +72,12 @@ export default function Navbar(){
               <div className="itemtog__linkpage">
                   <div className="itemtog__linkpage--item">
                       <div className="item">
-                          <a href="">
-                              test link page togle
+                          <a href="/staff">
+                              Staff Account
                               <span></span>
                           </a>
                       </div>
-                      <div className="item">
+                      {/* <div className="item">
                           <a href="">test link page togle
                               <span></span>
                           </a>
@@ -86,7 +86,7 @@ export default function Navbar(){
                           <a href="">test link page togle
                               <span></span>
                           </a>
-                      </div>
+                      </div> */}
                   </div>
               </div>
           </div>
@@ -217,6 +217,11 @@ export default function Navbar(){
               <div className="itemtog__linkpage">
                   <div className="itemtog__linkpage--item">
                       <div className="item">
+                          <a href="/complant">Complaint manager
+                              <span></span>
+                          </a>
+                      </div>
+                      {/* <div className="item">
                           <a href="">test link page togle
                               <span></span>
                           </a>
@@ -225,12 +230,7 @@ export default function Navbar(){
                           <a href="">test link page togle
                               <span></span>
                           </a>
-                      </div>
-                      <div className="item">
-                          <a href="">test link page togle
-                              <span></span>
-                          </a>
-                      </div>
+                      </div> */}
                   </div>
               </div>
           </div>

@@ -34,20 +34,15 @@ public class SecuritySetting {
         http.authorizeHttpRequests(rq_  -> rq_
                 .requestMatchers(HttpMethod.GET,link_not_securiry).permitAll()
                 .requestMatchers(HttpMethod.POST,link_not_securiry).permitAll()
-//                .requestMatchers(HttpMethod.GET,"/index").permitAll()
 
                 .anyRequest().authenticated());
 
-
         http.csrf(AbstractHttpConfigurer::disable);
-
 
         http.oauth2ResourceServer(oauth2 -> oauth2
                 .jwt(jwtConfigurer -> jwtConfigurer.decoder(jwt_decoder())));
 
-
         http.cors(Customizer.withDefaults());
-
 
         return http.build();
     }

@@ -2,6 +2,7 @@ package com.example.demo.model.serviece;
 
 
 import com.example.demo.api_setting.ApiRespone;
+import com.example.demo.exception.ExceptionCustom;
 import com.example.demo.model.entity.*;
 import com.example.demo.model.entity.custom.ContractLeaseCustomUserApartmentEntity;
 import com.example.demo.model.repo.*;
@@ -12,6 +13,7 @@ import com.example.demo.model.respone.UpdateDeleteCreateRespone;
 import com.example.demo.model.request.UserUpdateRequest;
 import com.example.demo.model.entity.custom.PaymentCustomNameUserEntity;
 import com.example.demo.model.respone.RMPRespone;
+import jakarta.persistence.Tuple;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.experimental.FieldDefaults;
@@ -21,6 +23,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -57,31 +60,47 @@ public class RMPServiece {
         List<PaymentMethodEntity> paymentMethodEntities = paymentMethodRepo.findAll();
         List<ServiceEntity> serviceEntities_ = serviceRepo.findAll();
         List<ApartmentEntity> apartmentEntiries_  = apartmentRepo.findAllCustom();
-        List<PaymentCustomNameUserEntity> paymentCustomNameUserEntities = new ArrayList<>();
+        List<Tuple> tupleCustomPayment_ = new ArrayList<>();
 
         if(name_==null && phone_==null && email_==null && idApartment_==null){
             userEntities_ = userRepo.findByNamePhoneEmail("%%","%%","%%");
-            paymentCustomNameUserEntities = paymentCustomNameUserRepo.findByNamePhoneEmailUser("%%","%%","%%");
+            tupleCustomPayment_ = paymentCustomNameUserRepo.findByNamePhoneEmailUser("%%","%%","%%");
         }else{
             if(idApartment_!=null){
-                ContractLeaseCustomUserApartmentEntity contractLeaseEntities = contractLeaseCustomUserApartmentRepo.findByIdApartment(idApartment_);
-                System.out.println(contractLeaseEntities);
-                if(contractLeaseEntities!=null){
-                    userEntities_ = userRepo.findByIdUser(contractLeaseEntities.getId_user_());
-                    paymentCustomNameUserEntities = paymentCustomNameUserRepo.findByIdApartMent(idApartment_);
-                    System.out.println(userEntities_);
-//                    paymentCustomNameUserEntities = paymentCustomNameUserRepo.findByNamePhoneEmailUser("%"+name_+"%","%"+phone_+"%","%"+email_+"%");
+                try {
+                    List<Tuple> t = contractLeaseCustomUserApartmentRepo.findByIdApartment(idApartment_);
+                    List<ContractLeaseCustomUserApartmentEntity> contractLeaseEntities = t.stream().map(tup -> new ContractLeaseCustomUserApartmentEntity(
+                            tup.get(0, String.class),
+                            tup.get(1,String.class)
+                    )).collect(Collectors.toList());
+
+                    if(contractLeaseEntities!=null){
+                        userEntities_ = userRepo.findByIdUser(contractLeaseEntities.get(0).getId_user_());
+                        tupleCustomPayment_ = paymentCustomNameUserRepo.findByIdApartMent(idApartment_);
+                    }
+                } catch (RuntimeException e) {
+                    throw new RuntimeException(new ExceptionCustom("not search user and payment","400"));
                 }
             }else{
                 userEntities_ = userRepo.findByNamePhoneEmail("%"+name_+"%","%"+phone_+"%","%"+email_+"%");
-                paymentCustomNameUserEntities = paymentCustomNameUserRepo.findByNamePhoneEmailUser("%"+name_+"%","%"+phone_+"%","%"+email_+"%");
+                tupleCustomPayment_ = paymentCustomNameUserRepo.findByNamePhoneEmailUser("%"+name_+"%","%"+phone_+"%","%"+email_+"%");
             }
         }
+
+        List<PaymentCustomNameUserEntity> paymentCustomNameUserEntity = tupleCustomPayment_.stream().map(tup->new PaymentCustomNameUserEntity(
+                tup.get("id_",String.class),
+                tup.get("name_",String.class),
+                tup.get("id_service_",String.class),
+                tup.get("id_payment_method_",String.class),
+                tup.get("status_",String.class),
+                tup.get("total_",Double.class),
+                tup.get("payment_dateline_",Date.class)
+        )).collect(Collectors.toList());
 
         Double totalProceeds_ = 0.;
         Double totalReceivables_ = 0.;
 
-        for(PaymentCustomNameUserEntity i : paymentCustomNameUserEntities){
+        for(PaymentCustomNameUserEntity i : paymentCustomNameUserEntity){
             if(i.getStatus_().equals("complete")){
                 totalProceeds_+=i.getTotal_();
             }else{
@@ -89,25 +108,25 @@ public class RMPServiece {
             }
         }
 
-        ApiRespone<RMPRespone> apiRespone = new ApiRespone<>();
-        apiRespone.setApi_desription_("return to search method");
-        apiRespone.setApi_respone_("200");
-        apiRespone.setApi_result_(RMPRespone.builder()
-                        .payment_(paymentCustomNameUserEntities)
+        ApiRespone<RMPRespone> apiRespone = ApiRespone.<RMPRespone>builder()
+                .api_desription_("return to search method")
+                .api_respone_("200")
+                .api_result_(RMPRespone.builder()
+                        .payment_(paymentCustomNameUserEntity)
                         .user_(userEntities_)
                         .service_(serviceEntities_)
                         .paymentMethod_(paymentMethodEntities)
                         .apartmentEntiries_(apartmentEntiries_)
                         .totalProceeds_(totalProceeds_)
                         .totalReceivables_(totalReceivables_)
-                        .build());
+                        .build())
+                .build();
 
         return apiRespone;
-
     }
 
 
-    public ApiRespone<UpdateDeleteCreateRespone> updateRMPUser(UserUpdateRequest userUpdateRequest){
+    public ApiRespone<UpdateDeleteCreateRespone> updateRMPUser(UserEntity userEntityRequest_){
 
 
         /*update the user table
@@ -116,38 +135,28 @@ public class RMPServiece {
 
 
         try {
-            userRepo.updateUser(userUpdateRequest.getName_(),
-                    userUpdateRequest.getGender_(),
-                    userUpdateRequest.getEmail_(),
-                    userUpdateRequest.getStart_day_(),
-                    userUpdateRequest.getEnd_day_(),
-                    userUpdateRequest.getPhone_(),
-                    userUpdateRequest.getTotal_payment_(),
-                    userUpdateRequest.getDebt_(),
-                    userUpdateRequest.getStatus_(),
-                    userUpdateRequest.getPassword_(),
-                    userUpdateRequest.getSsn_(),
-                    userUpdateRequest.getAddress_(),
-                    userUpdateRequest.getId_());
-
+            userEntityRequest_.setDelete_status_(1);
+            userRepo.save(userEntityRequest_);
             ApiRespone<UpdateDeleteCreateRespone> apiRespone = ApiRespone.<UpdateDeleteCreateRespone>builder()
-                    .api_desription_("Update payment user"+userUpdateRequest.getId_())
+                    .api_desription_("Update payment user"+userEntityRequest_.getId_())
                     .api_respone_("200")
                     .api_result_(UpdateDeleteCreateRespone.builder()
                             .desription_("update submit a user data")
                             .check_(true)
                             .build())
                     .build();
+
             return apiRespone;
         } catch (Exception e) {
             ApiRespone<UpdateDeleteCreateRespone> apiRespone = ApiRespone.<UpdateDeleteCreateRespone>builder()
-                    .api_desription_("Update payment user"+userUpdateRequest.getId_())
+                    .api_desription_("Update payment user"+userEntityRequest_.getId_())
                     .api_respone_("200")
                     .api_result_(UpdateDeleteCreateRespone.builder()
                             .desription_(e.toString())
                             .check_(false)
                             .build())
                     .build();
+
             return apiRespone;
         }
 
@@ -156,7 +165,7 @@ public class RMPServiece {
     }
 
 
-    public ApiRespone<UpdateDeleteCreateRespone> upDateRMPPayment(PaymentUpdateRequest paymentUpdateRequest){
+    public ApiRespone<UpdateDeleteCreateRespone> upDateRMPPayment(PaymentEntity paymentEntity){
 
 
         /*Update the payment table
@@ -165,32 +174,33 @@ public class RMPServiece {
 
 
         try {
-            paymentRepo.updatePayment(paymentUpdateRequest.getIdPaymentMethod_(),
-                    paymentUpdateRequest.getIdService_(),
-                    paymentUpdateRequest.getPaymentDateline_(),
-                    paymentUpdateRequest.getStatus_(),
-                    paymentUpdateRequest.getTotal_(),
-                    paymentUpdateRequest.getId_());
-            System.out.println(paymentUpdateRequest);
-
+            paymentEntity.setDelete_status_(1);
+            paymentRepo.updatePayment(paymentEntity.getId_payment_method_(),
+                    paymentEntity.getId_service_(),
+                    paymentEntity.getPayment_dateline_(),
+                    paymentEntity.getStatus_(),
+                    paymentEntity.getTotal_(),
+                    paymentEntity.getId_());
             ApiRespone<UpdateDeleteCreateRespone> apiRespone = ApiRespone.<UpdateDeleteCreateRespone>builder()
-                    .api_desription_("Update payment request"+paymentUpdateRequest.getId_())
+                    .api_desription_("Update payment request"+paymentEntity.getId_())
                     .api_respone_("200")
                     .api_result_(UpdateDeleteCreateRespone.builder()
                             .desription_("update submit a user data")
                             .check_(true)
                             .build())
                     .build();
-            return apiRespone;
+
+            return new ApiRespone<>();
         } catch (Exception e) {
             ApiRespone<UpdateDeleteCreateRespone> apiRespone = ApiRespone.<UpdateDeleteCreateRespone>builder()
-                    .api_desription_("Update payment request err"+paymentUpdateRequest.getId_())
+                    .api_desription_("Update payment request err"+paymentEntity.getId_())
                     .api_respone_("200")
                     .api_result_(UpdateDeleteCreateRespone.builder()
                             .desription_(e.toString())
                             .check_(false)
                             .build())
                     .build();
+
             return apiRespone;
         }
     }
@@ -274,6 +284,7 @@ public class RMPServiece {
 
 
         try {
+            userEntityRequest_.setDelete_status_(1);
             userRepo.save(userEntityRequest_);
             return ApiRespone.<UpdateDeleteCreateRespone>builder()
                     .api_desription_("create user request")
@@ -294,24 +305,6 @@ public class RMPServiece {
                     .build();
         }
     }
-
-
-//    public ApiRespone<UpdateDeleteCreateRespone> createPayment(PaymentEntity paymentEntityRequest_){
-//
-//
-//        /*create data user infomation
-//        *   create 1 row data user in tabel user_
-//        *
-//        * */
-//
-//        System.out.println(paymentEntityRequest_);
-//
-//        return new ApiRespone<>();
-//    }
-
-
-
-
 
 
 

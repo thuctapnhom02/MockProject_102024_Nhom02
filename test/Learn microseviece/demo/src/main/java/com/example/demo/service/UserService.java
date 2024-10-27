@@ -1,20 +1,25 @@
 package com.example.demo.service;
 
 
+import com.example.demo.model.Client.ClientUserEntity;
+import com.example.demo.model.Client.HttpClientUserClient;
 import com.example.demo.model.FakeUserEntity;
+import com.example.demo.model.TestClient;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-//@Slf4j
 public class UserService {
 
     @Autowired
     HttpClientUserClient httpClientUserClient;
+    @Autowired
+    TestClient testClient;
 
     public String  createUser(FakeUserEntity fakeUserEntityRequest_){
         System.out.println(fakeUserEntityRequest_);
@@ -25,8 +30,12 @@ public class UserService {
                 .age_(fakeUserEntityRequest_.getAge_())
                 .build();
         System.out.println(clientUserEntity);
-
-        httpClientUserClient.createUser(clientUserEntity);
+        try {
+//            httpClientUserClient.createUser(clientUserEntity);
+            httpClientUserClient.createUser(clientUserEntity);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
 
         return "create phone and pass ok";
 

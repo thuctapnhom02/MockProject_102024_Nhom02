@@ -12,12 +12,16 @@ import java.util.Date;
 @NoArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class PaymentCustomNameUserEntity {
+public class ComplaintCustomNameUserEntity {
     String id_;
     String name_;
-    String id_service_;
-    String id_payment_method_;
     String status_;
-    Double total_;
-    Date payment_dateline_;
+    Date complaint_date_;
+    Date expected_completion_date_;
+    String content_of_complaint_;
+    String note_;
+    String id_apartment_;
+    String num_apartment_;
+    String id_staff_;
+    String name_staff_;
 }

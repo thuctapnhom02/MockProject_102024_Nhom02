@@ -1,5 +1,5 @@
 import axios from "axios"
-import '../../assets/css/Login.css'
+import '../assets/css/Login.css'
 import { useState } from "react"
 import {useNavigate, useParams } from "react-router-dom"
 import Navbar from "./Navbar"

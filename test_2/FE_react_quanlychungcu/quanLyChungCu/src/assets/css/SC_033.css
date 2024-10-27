@@ -18,46 +18,46 @@
   font-size: 25px;
   font-weight: bold;
 }
-.main__body--itemsearch form {
+.main__body--itemsearchRSM .form {
   border: 2px solid #747373;
   display: flex;
   justify-content: space-between;
   padding: 20px 0px;
 }
-.main__body--itemsearch form .itemsearch__input {
+.main__body--itemsearchRSM .form .itemsearchRSM__input {
   padding: 0px 20px;
   width: 70%;
 }
 
-.main__body--itemsearch form .itemsearch__input--item {
+.main__body--itemsearchRSM .form .itemsearchRSM__input--item {
   width: 100%;
   display: flex;
   justify-content: space-between;
   padding: 15px 0px;
 }
-.main__body--itemsearch form .itemsearch__input--item .item__title {
+.main__body--itemsearchRSM .form .itemsearchRSM__input--item .item__title {
   width: 30%;
 }
-.main__body--itemsearch form .itemsearch__input--item .item__title p {
+.main__body--itemsearchRSM .form .itemsearchRSM__input--item .item__title p {
   font-size: 20px;
 }
-.main__body--itemsearch form .itemsearch__input--item .item__input {
+.main__body--itemsearchRSM .form .itemsearchRSM__input--item .item__input {
   width: 70%;
 }
-.main__body--itemsearch form .itemsearch__input--item .item__input input {
+.main__body--itemsearchRSM .form .itemsearchRSM__input--item .item__input input {
   width: 80%;
   height: 100%;
 }
-.main__body--itemsearch form .itemsearch__input--item .item__input select {
+.main__body--itemsearchRSM .form .itemsearchRSM__input--item .item__input select {
   width: 50%;
   height: 100%;
   
 }
-.main__body--itemsearch form .itemsearch__input--item .item__input select.widthHeight::-webkit-scrollbar {
+.main__body--itemsearchRSM .form .itemsearchRSM__input--item .item__input select.widthHeight::-webkit-scrollbar {
   width: 14px;
   height: 14px;
 }
-.main__body--itemsearch form .itemsearch__btn {
+.main__body--itemsearchRSM .form .itemsearchRSM__btn {
   width: 30%;
   display: flex;
   flex-direction: column;
@@ -65,7 +65,7 @@
   justify-content: center;
   padding: 0px 20px;
 }
-.main__body--itemsearch form .itemsearch__btn a {
+.main__body--itemsearchRSM .form .itemsearchRSM__btn a {
   text-decoration: none;
   font-size: 25px;
   background-color: #747373;
@@ -80,26 +80,26 @@
   /* overflow: scroll; */
 }
 @media screen and (max-width:700px) {
-  .main__body--itemsearch form .itemsearch__input {
+  .main__body--itemsearchRSM .form .itemsearchRSM__input {
     padding: 0px 10px;
     width: 80%;
     
   }
 
-  .main__body--itemsearch form .itemsearch__btn {
+  .main__body--itemsearchRSM .form .itemsearchRSM__btn {
     width: 20%;
   }
-  .main__body--itemsearch form .itemsearch__btn a{
+  .main__body--itemsearchRSM .form .itemsearchRSM__btn a{
     font-size: 15px;
   }
 
-  .main__body--itemsearch form .itemsearch__input--item .item__input {
+  .main__body--itemsearchRSM .form .itemsearchRSM__input--item .item__input {
     display: flex;
     align-items: center;
     width: 100%;
     justify-content: space-between;
   }
-  .main__body--itemsearch form .itemsearch__input--item .item__input select{
+  .main__body--itemsearchRSM .form .itemsearchRSM__input--item .item__input select{
     width: 50%;
     margin-left: 20%;
   }
