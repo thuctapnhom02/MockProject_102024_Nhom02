@@ -1,0 +1,19 @@
+spring:
+  application:
+    name:
+      MockProject_102024_Nhom2
+  datasource:
+    url: jdbc:sqlserver://MSI\\hoang:1433;encrypt=true;trustServerCertificate=true;databaseName=MockProject_102024_Nhom2
+    username: sa
+    password: 123456789
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  jpa:
+    show-sql:
+      true
+    hibernate:
+      dialect: org.hibernate.dialect.SQLServerDialect
+      ddl-auto: update
+
+
+api:
+  prefix: api/v1
