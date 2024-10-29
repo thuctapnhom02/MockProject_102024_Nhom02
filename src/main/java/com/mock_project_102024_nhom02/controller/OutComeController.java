@@ -42,7 +42,7 @@ public class OutComeController {
     }
 
     @GetMapping
-    public ResponseEntity<PagingResponse> getAllStaff(
+    public ResponseEntity<PagingResponse> getAllOutcomes(
             @RequestParam(name = "search-value", required = false) String typeOutcomeId,
             @RequestParam(name = "start-date", required = false) LocalDate startDate,
             @RequestParam(name = "end-date", required = false) LocalDate endDate,

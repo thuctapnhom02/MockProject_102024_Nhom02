@@ -42,7 +42,7 @@ public class IncomeController {
     }
 
     @GetMapping
-    public ResponseEntity<PagingResponse> getAllStaff(
+    public ResponseEntity<PagingResponse> getAllIncomes(
             @RequestParam(name = "search-value", required = false) String apartmentId,
             @RequestParam(name = "service-id", required = false) String serviceId,
             @RequestParam(name = "start-date", required = false) LocalDate startDate,
