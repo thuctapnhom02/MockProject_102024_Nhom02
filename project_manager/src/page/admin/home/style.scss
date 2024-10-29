@@ -1,0 +1,59 @@
+.dashboard_content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .row_chart {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    min-height: 150px;
+    padding: 40px;
+    .revenue_chart {
+      padding-right: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex: 3;
+    }
+    .number_chart {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      flex: 1;
+      .row_chart {
+        height: 20px;
+        background-color: #e0f7fa;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    .complaint_chart {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      flex: 1;
+    }
+    .costline_chart {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      flex: 3;
+    }
+  }
+}

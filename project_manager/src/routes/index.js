@@ -15,7 +15,7 @@ import LayoutAdminDefault from "../layout/layoutAdminDefault";
 import Asset from "../page/admin/asset";
 import Complaint from "../page/admin/complaint";
 import Contract from "../page/admin/contract";
-import Financial from "../page/admin/financial";
+import { Income, Outcome } from "../page/admin/financial";
 import Personnel from "../page/admin/personnel";
 import RepairReq from "../page/admin/repair";
 import ResidentManagerment from "../page/admin/resident";
@@ -39,153 +39,155 @@ import Profile from "../page/staff/profile";
 
 export const routes = [
   {
-    path:"login",
-    element: <Login/>
+    path: "login",
+    element: <Login />,
   },
   {
-    path:"signup",
-    element: <SignUp/>
+    path: "signup",
+    element: <SignUp />,
   },
   {
-    path:"/",
-    element: <LayoutDefault/>,
+    path: "/",
+    element: <LayoutDefault />,
     children: [
       {
-        path:"/",
-        element: <Home />
+        path: "/",
+        element: <Home />,
       },
       {
-        path:"owner",
-        element: <Owner />
+        path: "owner",
+        element: <Owner />,
       },
       {
-        path:"resident",
-        element: <Resident />
+        path: "resident",
+        element: <Resident />,
       },
       {
-        path:"properties",
-        element: <Properties />
+        path: "properties",
+        element: <Properties />,
       },
       {
-        path:"about",
-        element: <About />
+        path: "about",
+        element: <About />,
       },
       {
-        path:"blog",
-        element: <Blog />
+        path: "blog",
+        element: <Blog />,
       },
       {
-        path:"contact",
-        element: <Contact />
+        path: "contact",
+        element: <Contact />,
       },
       {
-        element: <PrivateRoute />
-      }
-    ]
+        element: <PrivateRoute />,
+      },
+    ],
   },
   {
-    path:"/admin",
-    element: <LayoutAdminDefault/>,
+    path: "/admin",
+    element: <LayoutAdminDefault />,
     children: [
       {
-        path:"/admin/",
-        element: <AdminHome />
+        path: "/admin/",
+        element: <AdminHome />,
       },
       {
-        path:"/admin/account",
-        element: <Account />
+        path: "/admin/account",
+        element: <Account />,
       },
       {
-        path:"/admin/asset",
-        element: <Asset />
+        path: "/admin/asset",
+        element: <Asset />,
       },
       {
-        path:"/admin/complaint",
-        element: <Complaint />
+        path: "/admin/complaint/income",
+        element: <Complaint />,
       },
       {
-        path:"/admin/contract",
-        element: <Contract />
+        path: "/admin/contract",
+        element: <Contract />,
       },
       {
-        path:"/admin/financial",
-        element: <Financial />
+        path: "/admin/financial/income",
+        element: <Income />,
       },
       {
-        path:"/admin/personnel",
-        element: <Personnel />
+        path: "/admin/financial/outcome",
+        element: <Outcome />,
       },
       {
-        path:"/admin/repair",
-        element: <RepairReq />
+        path: "/admin/personnel",
+        element: <Personnel />,
       },
       {
-        path:"/admin/resident",
-        element: <ResidentManagerment />
-      }
-    ]  
+        path: "/admin/repair",
+        element: <RepairReq />,
+      },
+      {
+        path: "/admin/resident",
+        element: <ResidentManagerment />,
+      },
+    ],
   },
   {
-    path:"/resident",
-    element: <LayoutResidentDefault/>,
+    path: "/resident",
+    element: <LayoutResidentDefault />,
     children: [
       {
-        path:"/resident/",
-        element: <ResidentHome />
+        path: "/resident/",
+        element: <ResidentHome />,
       },
       {
-        path:"/resident/information",
-        element: <Information />
+        path: "/resident/information",
+        element: <Information />,
       },
       {
-        path:"/resident/request",
-        element: <Request />
+        path: "/resident/request",
+        element: <Request />,
       },
       {
-        path:"/resident/payment",
-        element: <Payment />
+        path: "/resident/payment",
+        element: <Payment />,
       },
       {
-        path:"/resident/notification",
-        element: <Notification />
+        path: "/resident/notification",
+        element: <Notification />,
       },
       {
-        path:"/resident/complains",
-        element: <Complains />
+        path: "/resident/complains",
+        element: <Complains />,
       },
-    ]
+    ],
   },
   {
-    path:"/staff",
-    element: <LayoutStaffDefault/>,
+    path: "/staff",
+    element: <LayoutStaffDefault />,
     children: [
       {
-        path:"/staff/",
-        element: <StaffHome />
+        path: "/staff/",
+        element: <StaffHome />,
       },
       {
-        path:"/staff/assignment",
+        path: "/staff/assignment",
         element: <Assignment />,
-        children:[
-        ]
+        children: [],
       },
       {
-        path:"/staff/assignment/system",
-        element: <System />
+        path: "/staff/assignment/system",
+        element: <System />,
       },
       {
-        path:"/staff/assignment/request_repair",
-        element: <RequestRepair />
+        path: "/staff/assignment/request_repair",
+        element: <RequestRepair />,
       },
       {
-        path:"/staff/workcontract",
-        element: <WorkContract />
+        path: "/staff/workcontract",
+        element: <WorkContract />,
       },
       {
-        path:"/staff/profile",
-        element: <Profile />
+        path: "/staff/profile",
+        element: <Profile />,
       },
-      
-    ]
-  }
-]
+    ],
+  },
+];

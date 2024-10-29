@@ -1,10 +1,2 @@
-
-
-function Financial(){
-    return(
-      <>
-      Financial managerment
-      </>
-    )
-  }
-  export default Financial;
+export { default as Income } from "./Income";
+export { default as Outcome } from "./Outcome";

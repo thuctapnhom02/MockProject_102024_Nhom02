@@ -1,0 +1,33 @@
+.filter-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.filter-label {
+  font-size: 16px;
+  color: #333;
+  margin-right: 10px;
+}
+
+.filter-select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: #fff;
+  cursor: pointer;
+
+  &:hover {
+    border-color: #888;
+  }
+
+  &:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+}
+
+.filter-select option {
+  padding: 10px;
+}
