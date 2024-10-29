@@ -130,5 +130,40 @@ public class IncomeController {
                 .build();
         return ResponseEntity.ok(apiResponse);
     }
+    @GetMapping("/notify/filter")
+    public ResponseEntity<PagingResponse> filterIncome(
+            @RequestParam(name = "end-date", required = false) LocalDate endDate,
+            @RequestParam(name = "current-page", defaultValue = "1", required = false) int currentPage,
+            @RequestParam(name = "page-size", defaultValue = "9", required = false) int pageSize
+    ) {
+        Page<IncomeResponse> filteredIncomes = incomeService.filterIncomesByEndDate(endDate, currentPage, pageSize);
+
+        PagingResponse<?> response = PagingResponse.builder()
+                .code(HttpStatus.OK.value())
+                .currentPage(currentPage)
+                .pageSize(pageSize)
+                .result(filteredIncomes.toList())
+                .totalItem(filteredIncomes.getTotalElements())
+                .totalPage(filteredIncomes.getTotalPages())
+                .build();
+        return ResponseEntity.status(HttpStatus.OK.value()).body(response);
+    }
+    @PostMapping("/save")
+public ResponseEntity<ApiResponse> saveIncome(@RequestBody IncomeRequest incomeRequest) {
+    if (incomeRequest == null || incomeRequest.getStatus() == "late") { 
+        return ResponseEntity.badRequest().body(ApiResponse.<IncomeResponse>builder()
+                .message("Invalid data")
+                .response(HttpStatus.BAD_REQUEST.value())
+                .build());
+    }
+
+    IncomeResponse savedIncome = incomeService.addIncome(incomeRequest);
+    
+    ApiResponse<IncomeResponse> apiResponse = ApiResponse.<IncomeResponse>builder()
+            .message("Save success")
+            .response(HttpStatus.CREATED.value())
+            .result(savedIncome)
+            .build();
+            return ResponseEntity.ok(apiResponse);
 
 }

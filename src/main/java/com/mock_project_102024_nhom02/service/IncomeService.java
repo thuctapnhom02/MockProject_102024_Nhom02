@@ -25,4 +25,6 @@ public interface IncomeService {
     void deleteIncome(String id);
 
     void exportToExcel(HttpServletResponse response) throws IOException;
+
+    Page<IncomeResponse> filterIncomesByEndDate(LocalDate endDate, int currentPage, int pageSize);
 }
