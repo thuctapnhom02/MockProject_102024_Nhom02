@@ -1,22 +1,22 @@
 package vn.vpm.hotelM.domain;
 
 import jakarta.persistence.*;
-import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "user_")
-public class User {
+@Table(name = "staff_")
+public class Staff {
 
     @Id
     @Column(name = "id_", length = 60)
     private String id;
 
+    @Column(name = "id_role_", length = 60)
+    private String roleId;
+
     @Column(name = "name_", length = 255)
     private String name;
-
-    @Column(name = "email_", length = 255)
-    private String email;
 
     @Column(name = "phone_", length = 30)
     private String phone;
@@ -24,8 +24,11 @@ public class User {
     @Column(name = "gender_", length = 10)
     private String gender;
 
-    @Column(name = "ssn_", length = 9)
-    private String ssn;
+    @Column(name = "start_day_")
+    private LocalDateTime startDay;
+
+    @Column(name = "end_day_")
+    private LocalDateTime endDay;
 
     @Column(name = "status_", length = 60)
     private String status;
@@ -33,13 +36,7 @@ public class User {
     @Column(name = "password_", length = 255)
     private String password;
 
-    @Column(name = "debt_")
-    private BigDecimal debt;
-
-    @Column(name = "total_payment_")
-    private BigDecimal totalPayment;
-
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "staff")
     private List<ContractLease> contractLeases;
 
     // Getters and Setters
@@ -52,20 +49,20 @@ public class User {
         this.id = id;
     }
 
+    public String getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(String roleId) {
+        this.roleId = roleId;
+    }
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getPhone() {
@@ -84,12 +81,20 @@ public class User {
         this.gender = gender;
     }
 
-    public String getSsn() {
-        return ssn;
+    public LocalDateTime getStartDay() {
+        return startDay;
     }
 
-    public void setSsn(String ssn) {
-        this.ssn = ssn;
+    public void setStartDay(LocalDateTime startDay) {
+        this.startDay = startDay;
+    }
+
+    public LocalDateTime getEndDay() {
+        return endDay;
+    }
+
+    public void setEndDay(LocalDateTime endDay) {
+        this.endDay = endDay;
     }
 
     public String getStatus() {
@@ -106,22 +111,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public BigDecimal getDebt() {
-        return debt;
-    }
-
-    public void setDebt(BigDecimal debt) {
-        this.debt = debt;
-    }
-
-    public BigDecimal getTotalPayment() {
-        return totalPayment;
-    }
-
-    public void setTotalPayment(BigDecimal totalPayment) {
-        this.totalPayment = totalPayment;
     }
 
     public List<ContractLease> getContractLeases() {

@@ -1,6 +1,6 @@
 package vn.vpm.hotelM.domain;
+
 import jakarta.persistence.*;
-import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
@@ -11,29 +11,20 @@ public class Apartment {
     @Column(name = "id_", length = 60)
     private String id;
 
-    @Column(name = "flor_")
-    private int flor;
+    @Column(name = "location_", length = 255)
+    private String location;
+
+    @Column(name = "area_")
+    private String area; // Có thể thay đổi thành BigDecimal nếu cần
+
+    @Column(name = "price_")
+    private String price; // Có thể thay đổi thành BigDecimal nếu cần
 
     @Column(name = "status_", length = 60)
     private String status;
 
-    @Column(name = "num_apartment_", length = 255)
-    private String numApartment;
-
-    @Column(name = "num_bedroom_")
-    private int numBedroom;
-
-    @Column(name = "square_")
-    private BigDecimal square;
-
-    @Column(name = "rent_price_")
-    private BigDecimal rentPrice;
-
-    @Column(name = "address_", length = 255)
-    private String address;
-
     @OneToMany(mappedBy = "apartment")
-    private List<Complaint> complaints;
+    private List<ContractLease> contractLeases;
 
     // Getters and Setters
 
@@ -45,12 +36,28 @@ public class Apartment {
         this.id = id;
     }
 
-    public int getFlor() {
-        return flor;
+    public String getLocation() {
+        return location;
     }
 
-    public void setFlor(int flor) {
-        this.flor = flor;
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 
     public String getStatus() {
@@ -61,51 +68,11 @@ public class Apartment {
         this.status = status;
     }
 
-    public String getNumApartment() {
-        return numApartment;
+    public List<ContractLease> getContractLeases() {
+        return contractLeases;
     }
 
-    public void setNumApartment(String numApartment) {
-        this.numApartment = numApartment;
-    }
-
-    public int getNumBedroom() {
-        return numBedroom;
-    }
-
-    public void setNumBedroom(int numBedroom) {
-        this.numBedroom = numBedroom;
-    }
-
-    public BigDecimal getSquare() {
-        return square;
-    }
-
-    public void setSquare(BigDecimal square) {
-        this.square = square;
-    }
-
-    public BigDecimal getRentPrice() {
-        return rentPrice;
-    }
-
-    public void setRentPrice(BigDecimal rentPrice) {
-        this.rentPrice = rentPrice;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public List<Complaint> getComplaints() {
-        return complaints;
-    }
-
-    public void setComplaints(List<Complaint> complaints) {
-        this.complaints = complaints;
+    public void setContractLeases(List<ContractLease> contractLeases) {
+        this.contractLeases = contractLeases;
     }
 }
