@@ -20,13 +20,12 @@ import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Objects;
 
 @RestController
-@RequestMapping("/admin/api")
+@RequestMapping("${api.prefix}" + "/resident-payments")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class AdminController {
 
@@ -38,111 +37,109 @@ public class AdminController {
     StaffService staffService;
 
     @PreAuthorize("hasRole('Admin')")
-    @PostMapping("/ResidentManagementAndPayments")
-    ApiRespone<RMPRespone> ResidentManagementAndPaymentsServiece(@RequestBody SMPSearchRequest SMPSearchRequest){
-        ApiRespone<RMPRespone> apiRespone = rmpServiece.searchResidentManagementAndPayments(SMPSearchRequest.getName_(),
-                SMPSearchRequest.getPhone_(),
-                SMPSearchRequest.getEmail_(),
-                SMPSearchRequest.getIdApartment_());
+    @GetMapping("/search")
+    ApiRespone<RMPRespone> ResidentManagementAndPaymentsService(@RequestParam(name = "name", required = false) String name_,
+                                                                @RequestParam(name = "phone", required = false) String phone_,
+                                                                @RequestParam(name = "email", required = false) String email_,
+                                                                @RequestParam(name = "apartment_id", required = false) String idApartment_) {
+        ApiRespone<RMPRespone> apiRespone = null;
 
-        return apiRespone;
+        if (Objects.isNull(name_) && Objects.isNull(phone_) && Objects.isNull(email_) && Objects.isNull(idApartment_)) {
+            return rmpServiece.searchResidentManagementAndPayments(null, null, null, null);
+        }
+        return rmpServiece.searchResidentManagementAndPayments(name_, phone_, email_, idApartment_);
     }
 
 
     @PreAuthorize("hasRole('Admin')")
-    @RequestMapping("/ResidentManagementAndPayments")
-    ApiRespone<RMPRespone> ResidentManagementAndPaymentsGet(){
-        ApiRespone<RMPRespone> apiRespone = rmpServiece.searchResidentManagementAndPayments(null, null, null,null);
+    @PutMapping("/update-payment-user")
+    ApiRespone<UpdateDeleteCreateRespone> ResidentManagementAndPaymentsUpdateUser(@RequestBody UserEntity userEntityRequest_) {
+        ApiRespone<UpdateDeleteCreateRespone> apiResponse = rmpServiece.updateRMPUser(userEntityRequest_);
 
-        return apiRespone;
+        return apiResponse;
     }
 
 
     @PreAuthorize("hasRole('Admin')")
-    @PostMapping("/ResidentManagementAndPaymentsUpdateUser")
-    ApiRespone<UpdateDeleteCreateRespone> ResidentManagementAndPaymentsUpdateUser(@RequestBody  UserEntity userEntityRequest_){
-        ApiRespone<UpdateDeleteCreateRespone> apiRespone = rmpServiece.updateRMPUser(userEntityRequest_);
+    @PutMapping("/update-payment")
+    ApiRespone<UpdateDeleteCreateRespone> ResidentManagementAndPaymentsUpdatePayment(@RequestBody PaymentEntity paymentEntity) {
+        ApiRespone<UpdateDeleteCreateRespone> apiResponse = rmpServiece.upDateRMPPayment(paymentEntity);
 
-        return apiRespone;
+        return apiResponse;
     }
 
 
     @PreAuthorize("hasRole('Admin')")
-    @PostMapping("/ResidentManagementAndPaymentsUpdatePayment")
-    ApiRespone<UpdateDeleteCreateRespone> ResidentManagementAndPaymentsUpdatePayment(@RequestBody PaymentEntity paymentEntity){
-        ApiRespone<UpdateDeleteCreateRespone> apiRespone = rmpServiece.upDateRMPPayment(paymentEntity);
+    @DeleteMapping("/delete-user/{id}")
+    ApiRespone<UpdateDeleteCreateRespone> ResidentManagementAndPaymentsDeleteUser(@PathVariable("id") String userId_) {
+        ApiRespone<UpdateDeleteCreateRespone> apiResponse = rmpServiece.deleteUser(userId_);
 
-        return apiRespone;
+        return apiResponse;
     }
 
 
     @PreAuthorize("hasRole('Admin')")
-    @PostMapping("/ResidentManagementAndPaymentsDeleteUser")
-    ApiRespone<UpdateDeleteCreateRespone> ResidentManagementAndPaymentsDeleteUser(@RequestBody String userId_){
-        ApiRespone<UpdateDeleteCreateRespone> apiRespone = rmpServiece.deleteUser(userId_);
+    @DeleteMapping("/delete-payment/{id}")
+    ApiRespone<UpdateDeleteCreateRespone> ResidentManagementAndPaymentsDeletePayment(@PathVariable("id")  String paymentId_) {
+        ApiRespone<UpdateDeleteCreateRespone> apiResponse = rmpServiece.deletePayment(paymentId_);
 
-        return apiRespone;
+        return apiResponse;
     }
 
 
     @PreAuthorize("hasRole('Admin')")
-    @PostMapping("/ResidentManagementAndPaymentsDeletePayment")
-    ApiRespone<UpdateDeleteCreateRespone> ResidentManagementAndPaymentsDeletePayment(@RequestBody String paymentId_){
-        ApiRespone<UpdateDeleteCreateRespone> apiRespone = rmpServiece.deletePayment(paymentId_);
+    @PostMapping("/create-user")
+    ApiRespone<UpdateDeleteCreateRespone> ResidentManagementAndPaymentsCreateUser(@RequestBody UserEntity userEntityRequest_) {
 
-        return apiRespone;
+        ApiRespone<UpdateDeleteCreateRespone> apiResponse = rmpServiece.createUser(userEntityRequest_);
+
+        return apiResponse;
     }
 
 
     @PreAuthorize("hasRole('Admin')")
-    @PostMapping("/ResidentManagementAndPaymentsCreateUser")
-    ApiRespone<UpdateDeleteCreateRespone> ResidentManagementAndPaymentsCreateUser(@RequestBody UserEntity userEntityRequest_){
+    @GetMapping("/complaints")
+    ApiRespone<ComplaintRespone> getAllComplaint(@RequestParam(name = "nameUser_",required = false) String name_,
+                                                 @RequestParam(name = "status_",required = false) String status_) {
 
-        ApiRespone<UpdateDeleteCreateRespone> apiRespone = rmpServiece.createUser(userEntityRequest_);
+        ComplaintSearchRequest complaintSearchRequest = new ComplaintSearchRequest(name_,status_);
+        ApiRespone<ComplaintRespone> apiResponse = complaintService.getAllComplaint(complaintSearchRequest);
 
-        return apiRespone;
+        return apiResponse;
     }
 
 
     @PreAuthorize("hasRole('Admin')")
-    @PostMapping("/complaint")
-    ApiRespone<ComplaintRespone> getAllComplaint(@RequestBody ComplaintSearchRequest complaintSearchRequest){
-        ApiRespone<ComplaintRespone> apiRespone = complaintService.getAllComplaint(complaintSearchRequest);
+    @PutMapping("/update-complaint")
+    ApiRespone<UpdateDeleteCreateRespone> updateComplaint(@RequestBody UpdateComplaintRequest updateComplaintRequest) {
+        ApiRespone<UpdateDeleteCreateRespone> apiResponse = complaintService.updateComplaint(updateComplaintRequest);
 
-        return apiRespone;
+        return apiResponse;
     }
 
 
     @PreAuthorize("hasRole('Admin')")
-    @PostMapping("/complaintUpdate")
-    ApiRespone<UpdateDeleteCreateRespone> updateComplaint(@RequestBody UpdateComplaintRequest updateComplaintRequest){
-        ApiRespone<UpdateDeleteCreateRespone> apiRespone = complaintService.updateComplaint(updateComplaintRequest);
+    @GetMapping("/complaint-detail/{id}")
+    ApiRespone<ComplaintRespone> getComplaintById(@PathVariable("id") String idComplaint_) {
+        ApiRespone<ComplaintRespone> apiResponse = complaintService.getDtailComplaint(idComplaint_);
 
-        return apiRespone;
+        return apiResponse;
     }
 
 
     @PreAuthorize("hasRole('Admin')")
-    @PostMapping("/complaintDetail")
-    ApiRespone<ComplaintRespone> getComplaintById(@RequestBody String idComplaint_){
-        ApiRespone<ComplaintRespone> apiRespone = complaintService.getDtailComplaint(idComplaint_);
+    @GetMapping("/staff/search")
+    ApiRespone<StaffRespone> test_1(@RequestParam(name = "name_", required = false) String name_,
+                                    @RequestParam(name = "status_", required = false) String status_) {
+        ApiRespone<StaffRespone> apiResponse = staffService.search(SearchStaffRequest.builder().name_(name_).status_(status_).build());
 
-        return apiRespone;
+        return apiResponse;
     }
 
 
     @PreAuthorize("hasRole('Admin')")
-    @PostMapping("/staff")
-    ApiRespone<StaffRespone> test_1(@RequestBody SearchStaffRequest searchStaffRequest){
-        System.out.println(searchStaffRequest);
-        ApiRespone<StaffRespone> apiRespone = staffService.search(searchStaffRequest);
-        return apiRespone;
-    }
-
-
-    @PreAuthorize("hasRole('Admin')")
-    @PostMapping("/staff/update")
-    ApiRespone<UpdateDeleteCreateRespone> updateStaff(@RequestBody StaffEntity staffEntityRequest_){
+    @PutMapping("/staff/update")
+    ApiRespone<UpdateDeleteCreateRespone> updateStaff(@RequestBody StaffEntity staffEntityRequest_) {
         ApiRespone<UpdateDeleteCreateRespone> updateDeleteCreateResponeApiRespone = staffService.updateStaff(staffEntityRequest_);
 
         return updateDeleteCreateResponeApiRespone;
@@ -151,7 +148,7 @@ public class AdminController {
 
     @PreAuthorize("hasRole('Admin')")
     @PostMapping("/staff/create")
-    ApiRespone<UpdateDeleteCreateRespone> createStaff(@RequestBody StaffEntity staffEntityRequest_){
+    ApiRespone<UpdateDeleteCreateRespone> createStaff(@RequestBody StaffEntity staffEntityRequest_) {
         ApiRespone<UpdateDeleteCreateRespone> updateDeleteCreateRespone = staffService.createStaff(staffEntityRequest_);
 
         return updateDeleteCreateRespone;
@@ -159,8 +156,8 @@ public class AdminController {
 
 
     @PreAuthorize("hasRole('Admin')")
-    @PostMapping("/staff/delete")
-    ApiRespone<UpdateDeleteCreateRespone> createStaff(@RequestBody String idStaff_){
+    @DeleteMapping("/staff/delete/{id}")
+    ApiRespone<UpdateDeleteCreateRespone> createStaff(@PathVariable("id") String idStaff_) {
         ApiRespone<UpdateDeleteCreateRespone> updateDeleteCreateRespone = staffService.deleteStaff(idStaff_);
 
         return updateDeleteCreateRespone;
@@ -168,21 +165,7 @@ public class AdminController {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
+
+
+

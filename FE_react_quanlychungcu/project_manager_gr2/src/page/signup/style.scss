@@ -1,0 +1,38 @@
+$clr_bgr: #fff;
+$primaly:#3c82fa;
+*{
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+}
+body{
+  background: #edf2fa;
+}
+a{
+  color: #222121;
+  &:hover{
+    color: #727171;
+  }
+
+}
+input:focus{
+    font-weight: normal;
+    outline: none;
+}
+.layout{
+  display: flex;
+  justify-content: center;
+}
+.signup{
+  width: 30%;
+  height: auto;
+  background: $clr_bgr;
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+.container{
+  width: 100%;
+  margin: 0 10%;
+}

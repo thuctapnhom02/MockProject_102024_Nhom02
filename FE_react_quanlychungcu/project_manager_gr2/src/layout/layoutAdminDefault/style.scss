@@ -1,0 +1,21 @@
+.layout-admin-default {
+  --primary: #fe2c55;
+  --black: #000;
+  --white: #fff;
+  --text-color: #161823;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  &__sidebar {
+    flex-basis: 250px;
+    flex-shrink: 0px;
+    background-color: #f4f4f4;
+    height: 100vh;
+    overflow: hidden;
+  }
+  &__main {
+    flex-grow: 1;
+    background-color: #fff;
+    padding: 20px;
+  }
+}

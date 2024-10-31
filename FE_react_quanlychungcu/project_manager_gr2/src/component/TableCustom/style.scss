@@ -1,0 +1,47 @@
+$table-width: 100%;
+$border-color: #ddd;
+$header-bg-color: #4caf50;
+$header-text-color: black;
+$row-hover-bg-color: #f1f1f1;
+$even-row-bg-color: #f9f9f9;
+$padding: 12px 15px;
+
+table {
+  width: $table-width;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 16px;
+  text-align: left;
+
+  th,
+  td {
+    padding: $padding;
+    border: 1px solid $border-color;
+  }
+
+  thead {
+    background-color: #f2f2f2;
+
+    th {
+      background-color: $header-bg-color; // Màu nền cho tiêu đề
+      color: $header-text-color; // Màu chữ cho tiêu đề
+    }
+  }
+
+  tbody {
+    tr {
+      &:nth-child(even) {
+        background-color: $even-row-bg-color; // Màu nền cho hàng chẵn
+      }
+
+      &:hover {
+        background-color: $row-hover-bg-color; // Màu nền khi hover
+      }
+    }
+  }
+}
+
+input[type="checkbox"] {
+  transform: scale(1.5); // Tăng kích thước checkbox
+  cursor: pointer; // Thay đổi con trỏ khi hover lên checkbox
+}
