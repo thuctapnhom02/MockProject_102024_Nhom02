@@ -1,0 +1,85 @@
+{% extends "app/Base.html" %}
+{% load static %}
+{% block main__body %}
+        <div class="main-header">
+                <p> Apartment Management In The United States </p>
+        </div>
+        <div class="head-infor">
+            Information Building
+        </div>
+        <div class="main-infor">
+            <div class="head-text">
+            
+                <div class="infor-text">
+                    <p id ="area">Area: </p>
+                </div>
+                <div class="infor-text">
+                    <p id ="build-year">Build year: </p>
+                </div>
+                <div class="infor-text">
+                    <p id ="num-apartments">Number of apartments: </p>
+                </div>
+            </div>
+            <div class="infor-img">
+                <img src=" {% static 'app\images\Admin\adminasset.png'%}", alt="">
+            </div>
+        </div>
+        <div class="main-detail">
+            <div class = "detail-first">
+                <div class="button detail-border1">
+                    <div class="text-black">
+                        Number of maintenance times
+                    </div>
+                    <div class="detail-data" >
+                        <a href = '#'>0</a>
+                    </div>
+                </div>
+                <div class="button detail-border2">
+                    <div class="text-black">
+                        Number of repairs
+                    </div>
+                    <div class="detail-data" >
+                        <a href = '#'>0</a>
+                    </div>
+                </div>
+            </div>
+            <div class = "detail-first">
+                <div class="button detail-border3">
+                    <div class="text-black">
+                    Apartment condition
+                    </div>
+                    <div class="detail-data" >
+                        <a href = '#'>Good</a>
+                    </div>
+                </div>
+                <div class="button detail-border4">
+                    <div class= "text-black">
+                    ...
+                    </div>
+                    <div class="detail-data">
+                        <a  href = '#'>...</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main-list">   
+            <div class="list-head">
+                LIST OF APARTMENTS
+            </div>
+            <div class="table-list">
+                <div class="table-head">
+                    <p class="text-data"> Apartment ID </p>
+                    <p class="text-data"> Apartment name </p>
+                    <p class="text-data"> Acreage </p>
+                    <p class="text-data"> Status </p>
+                    <p class="text-data"> Detail </p>
+                </div>
+                <div id="apartment-list">
+                    
+                </div>
+            </div>
+        </div>
+        
+        </div>
+{% endblock main__body%}
+    
