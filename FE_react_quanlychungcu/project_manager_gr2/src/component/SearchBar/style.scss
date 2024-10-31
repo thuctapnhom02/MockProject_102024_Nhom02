@@ -1,0 +1,32 @@
+.search-bar {
+  display: flex;
+  align-items: center; // Canh giữa icon và input
+  border: 1px solid #ccc; // Đường viền cho input
+  border-radius: 5px; // Bo tròn góc
+  padding: 5px; // Padding bên trong
+  max-width: 400px; // Độ rộng tối đa của search bar
+
+  // Thay đổi màu sắc khi hover
+  &:hover {
+    border-color: #888; // Thay đổi màu viền khi hover
+  }
+}
+
+.search-icon {
+  color: #aaa; // Màu icon
+  margin-right: 10px; // Khoảng cách giữa icon và input
+}
+
+.search-input {
+  border: none; // Không có viền cho input
+  outline: none; // Không có viền khi focus
+  flex: 1; // Tự động mở rộng để lấp đầy không gian còn lại
+  padding: 5px; // Padding bên trong
+  font-size: 16px; // Kích thước font chữ
+}
+
+// Định dạng placeholder
+.search-input::placeholder {
+  color: #aaa; // Màu sắc của placeholder
+  opacity: 0.7; // Độ mờ
+}

@@ -1,0 +1,62 @@
+$color-white: #ffffff;
+$color-black: rgba(0, 0, 0, 0.5);
+$color-green: #4caf50;
+$color-red: #f44336;
+$color-gray: #ccc;
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $color-black; // Nền tối với độ mờ
+
+  .modal-content {
+    background-color: $color-white;
+    padding: 20px;
+    width: 400px;
+    height: auto; // Thay đổi chiều cao thành auto
+    border-radius: 8px; // Bo góc
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); // Đổ bóng
+    display: flex;
+    flex-direction: column; // Căn giữa các thành phần
+
+    h2 {
+      text-align: center; // Căn giữa tiêu đề
+    }
+
+    label {
+      margin: 10px 0; // Khoảng cách giữa các label
+    }
+
+    input {
+      width: 100%; // Để input chiếm toàn bộ chiều rộng
+      padding: 10px; // Thêm padding cho input
+      margin-top: 5px; // Khoảng cách giữa label và input
+      border: 1px solid $color-gray; // Đường viền cho input
+      border-radius: 4px; // Bo góc cho input
+    }
+
+    button {
+      margin-top: 15px; // Khoảng cách giữa nút và các input
+      padding: 10px; // Thêm padding cho nút
+      border: none; // Xóa đường viền
+      border-radius: 4px; // Bo góc cho nút
+      cursor: pointer; // Thay đổi con trỏ khi hover
+
+      &:first-of-type {
+        background-color: $color-green; // Màu nền cho nút Save
+        color: $color-white; // Màu chữ cho nút Save
+      }
+
+      &:last-of-type {
+        background-color: $color-red; // Màu nền cho nút Cancel
+        color: $color-white; // Màu chữ cho nút Cancel
+      }
+    }
+  }
+}

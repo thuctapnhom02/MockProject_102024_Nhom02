@@ -1,0 +1,70 @@
+$primary-color: #4caf50;
+$button-bg-color: #007bff;
+$button-hover-bg-color: darken($button-bg-color, 10%);
+$filter-bg-color: #f2f2f2;
+$padding: 10px;
+$margin: 20px 0;
+
+.income-container {
+  padding: $padding;
+
+  h1 {
+    margin-bottom: $margin;
+  }
+
+  .flex-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: $margin;
+
+    // Tùy chỉnh cho các filter
+    .filter {
+      flex: 1;
+      margin-right: $padding;
+
+      &:last-child {
+        margin-right: 0; // Không có margin cho filter cuối cùng
+      }
+    }
+  }
+
+  button {
+    background-color: $button-bg-color;
+    color: white;
+    border: none;
+    padding: $padding 20px;
+    margin-right: $padding;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: $button-hover-bg-color;
+    }
+
+    &:last-child {
+      margin-right: 0; // Không có margin cho nút cuối cùng
+    }
+  }
+
+  .summary {
+    .summary-grid {
+      display: grid; // Sử dụng Grid để tạo bố cục
+      grid-template-columns: repeat(2, 1fr); // 2 cột
+      gap: 20px; // Khoảng cách giữa các ô
+      margin-top: 20px; // Khoảng cách giữa tiêu đề và các ô
+
+      .summary-item {
+        padding: 15px; // Padding cho ô
+        border-radius: 8px; // Bo góc cho ô
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); // Đổ bóng cho ô
+
+        // Định dạng cho các ô chứa số
+        .number {
+          background-color: #d6d6d6; // Nền xám cho số
+          padding: 5px 10px; // Thêm padding cho số
+          border-radius: 4px; // Bo góc cho số
+        }
+      }
+    }
+  }
+}

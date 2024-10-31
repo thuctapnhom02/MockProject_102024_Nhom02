@@ -1,0 +1,113 @@
+$gray:#7a7a7a;
+.home{
+  margin-top: 50px;
+  width: 100%;
+  & .aboutus{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    &__img{
+      width: 45%;
+      aspect-ratio: 6/6.5;
+    }
+    &__content{
+      width: 40%;
+      margin-right: 10%;
+      padding-left: 5%;
+      &__title{
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 30px;
+      }
+      &__doc{
+        font-size: 21px;
+        color: $gray;
+        line-height: 1.5;   
+      }
+    }
+  }
+  .manager_service{
+    width: auto;
+    margin: 50px 20px 0;
+    &__title{
+      font-size: 24px;
+      font-weight: 600;
+      width: 100%;
+      text-align: center;
+    }
+    &__items{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      margin: 30px 30px;
+    }
+    &__item{
+      width: 40%;
+      margin: 30px 20px;
+      &__title{
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+      &__content{
+        font-size: 18px;
+        padding: 20px 0px;
+        color: $gray;
+        line-height: 1.5;
+      }
+    }
+  }
+  .footer{
+    width: 100%;
+    height: auto;
+    background: black;
+    display: flex;
+    padding: 10px 50px;
+    justify-content: space-around;
+    &__form{
+      width: 50%;
+      color: #fff;
+      padding: 30px 20% 0 5%;
+      & h2{
+        font-size: 26px;
+        font-weight: 500;
+      }
+      & form{
+        position: relative;
+        & .email{
+          width: 80%;
+          font-size: 18px;
+          padding: 5px 10px;
+          border-radius: 5px;
+          margin: 20px 0 100px;
+        }
+        & .subcribe{
+          position: absolute;
+          top:22px;
+          right: 20%;
+          font-size: 18px;
+          padding: 4px 5px 5px;
+          border: #fff 1px solid;
+          border-radius: 5px;
+          background: black;
+          color: #fff;
+        }
+      }
+    }
+    &__content{
+      width: 40%;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      &__item {
+        & .title{
+          font-size: 18px;
+          margin-bottom: 10px;
+        }
+        & .content p{
+          padding-bottom: 5px;
+        }
+      }
+    }
+  }
+}
